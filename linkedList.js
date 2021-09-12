@@ -50,8 +50,8 @@ function LinkedList() {
 
   //remove
   this.remove = function (element) {
-    var currentNode = head; // kitten, puppy, dog, cat ...
-    var previousNode;
+    let currentNode = head; // kitten, puppy, dog, cat ...
+    let previousNode;
     // this is if element is "kitten"
     if (currentNode.element === element) {
       console.log("head removed");
@@ -115,13 +115,14 @@ function LinkedList() {
       node.next = currentNode; //kitten, puppy, dog, cat ,fish
       head = node; // fox
     } else {
-      while (currentIndex < index) { //idx 1 idx 2
+      while (currentIndex < index) {
+        //idx 1 idx 2
         currentIndex++; //1 //2
         previousNode = currentNode; //kitten ... //puppy ...
         currentNode = currentNode.next; // puppy, dog, cat ,fish
         //dog, cat ,fish
       }
-      node.next = currentNode;  //fox, puppy dog, cat ,fish
+      node.next = currentNode; //fox, puppy dog, cat ,fish
       //fox, dog, cat ,fish
       previousNode.next = node; // kitten, fox, puppy, dog, cat ,fish
       //kitten, puppy, fox, dog, cat ,fish
@@ -130,7 +131,7 @@ function LinkedList() {
   };
 
   this.removeAt = function (index) {
-    let currentNode = head; //kitten,  
+    let currentNode = head; //kitten,
     let previousNode;
     let currentIndex = 0;
     if (index < 0 || index >= length) {
@@ -139,9 +140,10 @@ function LinkedList() {
     if (index === 0) {
       head = currentNode.next;
     } else {
-      while (currentIndex < index) { //idx 1 (puppy)
+      while (currentIndex < index) {
+        //idx 1 (puppy)
         currentIndex++;
-        previousNode = currentNode;  //kitten,   
+        previousNode = currentNode; //kitten,
         currentNode = currentNode.next; //puppy,  dog, cat ,fish
       }
       previousNode.next = currentNode.next; // puppy gets replaced by  dog
@@ -165,4 +167,4 @@ conga.remove("Puppy");
 // console.log(conga.elementAt(3));
 // console.log(conga.indexOf("Puppy"));
 
-//console.log(conga.head());
+console.log(conga.head());

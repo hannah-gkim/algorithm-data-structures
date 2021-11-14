@@ -5,6 +5,18 @@ class Node {
     this.next = null;
   }
 }
+
+// let node1 = new Node(1);
+// let node2 = new Node(2);
+// let node3 = new Node(3);
+// let node4 = new Node(4);
+// node1.next = node2;
+// let current = node1.next;
+// current.next = node3;
+// current = current.next;
+// current.next = node4;
+// console.log(node1);
+
 // function
 //   var Node = function (element) {
 //     this.element = element;
@@ -18,6 +30,7 @@ function LinkedList() {
   this.size = function () {
     return length;
   };
+
   this.head = function () {
     return head;
   };
@@ -25,21 +38,10 @@ function LinkedList() {
   //add
   this.add = function (element) {
     let node = new Node(element);
-    //Node { element: 'Kitten', next: null }
-    //Node { element: 'Puppy', next: null }
-    //Node { element: 'Cat', next: null }
     if (head === null) {
-      head = node; //Node { element: 'Kitten', next: null }
+      head = node;
     } else {
       let currentNode = head;
-      /*
-      Node {
-        element: 'Kitten',
-        next: Node { element: 'Puppy',
-            next: Node { element: 'Dog', next: [Node] }
-            }
-        }
-      */
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
@@ -50,21 +52,19 @@ function LinkedList() {
 
   //remove
   this.remove = function (element) {
-    let currentNode = head; // kitten, puppy, dog, cat ...
+    let currentNode = head;
     let previousNode;
-    // this is if element is "kitten"
     if (currentNode.element === element) {
       console.log("head removed");
-      head = currentNode.next; //head => puppy, dog, cat ....
+      head = currentNode.next;
     } else {
       while (currentNode.element !== element) {
-        //if remove 'puppy'
-        previousNode = currentNode; //the head => kitten, puppy, dog, cat
-        currentNode = currentNode.next; //puppy, so breakout of loop
+        //4
+        previousNode = currentNode; //3
+        currentNode = currentNode.next; //4
         console.log("none head removed");
       }
-      //so then Puppy = Dog, puppy got replaced with dog
-      previousNode.next = currentNode.next;
+      previousNode.next = currentNode.next; //5
     }
     length--;
   };
@@ -101,9 +101,8 @@ function LinkedList() {
 
   //adding node in the middle of list
   this.addAt = function (index, element) {
-    let node = new Node(element); // fox
-
-    let currentNode = head; //kitten, puppy, dog, cat ,fish
+    let node = new Node(element);
+    let currentNode = head;
     let previousNode;
     let currentIndex = 0;
 
@@ -112,28 +111,26 @@ function LinkedList() {
     }
 
     if (index === 0) {
-      node.next = currentNode; //kitten, puppy, dog, cat ,fish
-      head = node; // fox
+      node.next = currentNode;
+      head = node;
     } else {
       while (currentIndex < index) {
-        //idx 1 idx 2
-        currentIndex++; //1 //2
-        previousNode = currentNode; //kitten ... //puppy ...
-        currentNode = currentNode.next; // puppy, dog, cat ,fish
-        //dog, cat ,fish
+        //0 < 1
+        currentIndex++; //1
+        previousNode = currentNode;
+        currentNode = currentNode.next;
       }
-      node.next = currentNode; //fox, puppy dog, cat ,fish
-      //fox, dog, cat ,fish
-      previousNode.next = node; // kitten, fox, puppy, dog, cat ,fish
-      //kitten, puppy, fox, dog, cat ,fish
+      node.next = currentNode;
+      previousNode.next = node;
     }
     length++;
   };
 
   this.removeAt = function (index) {
-    let currentNode = head; //kitten,
+    let currentNode = head;
     let previousNode;
     let currentIndex = 0;
+
     if (index < 0 || index >= length) {
       return null;
     }
@@ -141,30 +138,30 @@ function LinkedList() {
       head = currentNode.next;
     } else {
       while (currentIndex < index) {
-        //idx 1 (puppy)
-        currentIndex++;
-        previousNode = currentNode; //kitten,
-        currentNode = currentNode.next; //puppy,  dog, cat ,fish
+        // 0 < 2
+        //[kitten, puppy,   "dog", <---   cat, fish] dog idx 2
+        currentIndex++; //1 //2
+        previousNode = currentNode; //kitten //puppy
+        currentNode = currentNode.next; //puppy //dog
       }
-      previousNode.next = currentNode.next; // puppy gets replaced by  dog
+      previousNode.next = currentNode.next; // "dog"<---xxx cat
+      //so got rid of dog [kitten, puppy, cat, fish]
     }
     length--;
-    return currentNode.element;
+    return currentNode.element; //return what is being replaced
   };
 }
 
-var conga = new LinkedList();
+let myLinkedList = new LinkedList();
 
-conga.add("Kitten");
-conga.add("Puppy");
-conga.add("Dog");
-conga.add("Cat");
-conga.add("Fish");
-conga.remove("Puppy");
-
-// console.log(conga.size());
-// console.log(conga.removeAt(3));
-// console.log(conga.elementAt(3));
-// console.log(conga.indexOf("Puppy"));
-
-console.log(conga.head());
+myLinkedList.add("Kitten");
+myLinkedList.add("Puppy");
+myLinkedList.add("Dog");
+myLinkedList.add("Cat");
+myLinkedList.add("Fish");
+// myLinkedList.remove("Puppy");
+console.log(myLinkedList.head());
+// console.log(myLinkedList.size());
+// console.log(myLinkedList.removeAt(3));
+// console.log(myLinkedList.elementAt(3));
+// console.log(myLinkedList.indexOf("Puppy"));

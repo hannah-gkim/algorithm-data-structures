@@ -1,19 +1,19 @@
 //dept first uss stack
 //iterative approach
-// const depthFirstPrint = (graph, source) => {
-//   const stack = [source]; //
-//   const depthfirst = [];
-//   while (stack.length > 0) {
-//     const current = stack.pop();
-//     depthfirst.push(current);
-//     for (let neighbor of graph[current]) {
-//       stack.push(neighbor);
-//     }
-//   }
-//   console.log(depthfirst);
-//   return depthfirst;
-// };
+const depthFirstPrint = (graph, source) => {
+  const stack = [source]; //
+  const depthfirst = [];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    depthfirst.push(current);
+    for (let neighbor of graph[current]) {
+      stack.push(neighbor);
+    }
+  }
+  return depthfirst;
+};
 
+/*
 //recursive
 const depthFirstPrint = (graph, source, depthfirst = []) => {
   //   let depthfirst = [];
@@ -24,6 +24,7 @@ const depthFirstPrint = (graph, source, depthfirst = []) => {
   }
   return depthfirst;
 };
+*/
 
 const graph = {
   a: ["c", "b"],
@@ -36,5 +37,3 @@ const graph = {
 
 depthFirstPrint(graph, "a"); //abdfce or //acebdf
 console.log(depthFirstPrint(graph, "a"));
-
-//breadtg first uses queue

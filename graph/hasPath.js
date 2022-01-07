@@ -1,10 +1,11 @@
 //depth first recursive way
+// time O(n^2) space O(n)
 const hasPathDepth = (graph, src, dst) => {
   if (src === dst) return true;
   for (let neighbor of graph[src]) {
-      //as long as  graph[src or neighbor] has something to loop?
+    //as long as  graph[src or neighbor] has something to loop?
     if (hasPathDepth(graph, neighbor, dst) === true) {
-      console.log(neighbor);
+      //   console.log(neighbor);
       return true;
     }
   }
@@ -12,6 +13,7 @@ const hasPathDepth = (graph, src, dst) => {
 };
 
 //breadth first
+// time O(n^2) space O(n)
 const hasPathBreadth = (graph, src, dst) => {
   // graph 'f' 'k'
   const queue = [src]; // h

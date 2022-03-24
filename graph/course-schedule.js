@@ -1,60 +1,58 @@
 let visiting; // is being explored
 let visited; // is already explored
 let graph;
-
+//to take course 1 need to take 0 first, so 1 cannot be prereq for 0
 var canFinish = function (numCourses, prerequisites) {
+  // [[1,0],[0,1], [1,2]]
   graph = new Map();
   visiting = new Set();
   visited = new Set();
 
-  for (let [v, e] of prerequisites) {
-    if (graph.has(v)) {
+  for (let [v, e] of prerequisites) { // [1,0]   [0,1]  [1,2]
+    if (graph.has(v)) { 
       console.log("hellooo??");
-      let edges = graph.get(v);
-      edges.push(e);
+      let edges = graph.get(v); // [0]
+      edges.push(e); // [0,2]
       graph.set(v, edges);
     } else {
-      graph.set(v, [e]);
+      graph.set(v, [e]); // { 1: [0,2], 0 : [1]}
     }
   }
 
   for (const [v, e] of graph) {
-    console.log(graph, v);
-    if (DFS(v)) {
+    // { 1: [0,2], 0 : [1]}
+    if (DFS(v)) { //1
       return false; //if cyclic it will not finish so it is false
     }
   }
-
+  // console.log(visited);
   return true;
 };
 
 //helper function
 var DFS = function (v) {
-  visiting.add(v);
-  let edges = graph.get(v); // get all the edges to explore
+  visiting.add(v); // {1, 0}
 
+  let edges = graph.get(v); // [0,2] // [1]
   if (edges) {
-    //console.log(edges)
-    for (let e of edges) {
+    for (let e of edges) { // 0 2 //1
       if (visited.has(e)) {
         //skip if it is explored already
         continue;
       }
 
       if (visiting.has(e)) {
-        //found e is being explored
+        // 
         return true;
       }
 
-      if (DFS(e)) {
-        // DFS deeper if this e is cyclic
+      if (DFS(e)) { // 0
         return true;
       }
     }
   }
-
-  visiting.delete(v); // remove from visiting set when all decedant v are visited
-  visited.add(v);
+  visiting.delete(v); // {   }
+  visited.add(v); // { }
   return false;
 };
 

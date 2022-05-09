@@ -1,4 +1,4 @@
-//dept first uss stack
+//dept first use stack
 //iterative approach
 const depthFirstPrint = (graph, source) => {
   const stack = [source]; //

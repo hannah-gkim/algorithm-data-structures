@@ -1,11 +1,12 @@
 //breadtg first uses queue
+//first in first out
 const breadthFirstPrint = (graph, source) => {
-  const queue = [source]; 
+  const queue = [source];
   const breadthFirst = [];
   while (queue.length > 0) {
     const current = queue.shift();
     breadthFirst.push(current);
-    for (let neighbor of graph[current]) { 
+    for (let neighbor of graph[current]) {
       queue.push(neighbor);
     }
   }

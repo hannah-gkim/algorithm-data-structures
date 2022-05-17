@@ -13,13 +13,10 @@ function sameFrequency(num1, num2) {
   num2 = num2.toString();
   let hash = {};
   if (num1.length !== num2.length) return false;
-  //   console.log("num1", num1);
   for (let i = 0; i < num1.length; i++) {
-    // console.log("num1[i] ???", num1[i]);
     if (!hash[num1[i]]) hash[num1[i]] = 1;
     else hash[num1[i]]++;
   }
-  //   console.log(hash);
   for (let j = 0; j < num2.length; j++) {
     if (!hash[num2[j]]) return false;
   }
